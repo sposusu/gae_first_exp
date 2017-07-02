@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
 # Copyright 2016 Google Inc.
@@ -103,6 +104,9 @@ class Guestbook(webapp2.RequestHandler):
         # ~1/second.
         guestbook_name = self.request.get('guestbook_name',
                                           DEFAULT_GUESTBOOK_NAME)
+
+        # 寫進資料庫前請檢查有沒有這些字眼：948794狂、我的老天鵝啊
+
         greeting = Greeting(parent=guestbook_key(guestbook_name))
 
         if users.get_current_user():

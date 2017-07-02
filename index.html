@@ -65,7 +65,7 @@
       </div>
       {% endfor %}
       <!-- [END greetings] -->
-
+      
       <form action="/sign?guestbook_name={{ guestbook_name }}" method="post">
         <div><textarea name="content" class="input-block-level" rows="3"></textarea></div>
         <div><input type="submit" class="btn btn-large btn-primary" value="Sign Guestbook"></div>
@@ -80,6 +80,11 @@
 
       <a href="{{ url|safe }}">{{ url_linktext }}</a>
     </div>
+    <script>
+    // 請將下列的Form改成用 jquery 傳送資料 
+    // 請在傳送前先檢查資料有沒有：948794狂、我的老天鵝等字眼
+    // 如果有的話請擋住不傳出資料
+    </script>
   </body>
 </html>
 {% endautoescape %}
