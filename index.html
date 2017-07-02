@@ -31,6 +31,11 @@
         overflow: scroll;
       }
     </style>
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js" integrity="sha256-5Ud5lebnfqDOArqCr7p6w5KxX1dwXFcqiBw25dhhYFI=" crossorigin="anonymous"></script>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -50,20 +55,7 @@
     </div>
     <div class="container">
       <!-- [START greetings] -->
-      {% for greeting in greetings %}
-      <div class="row">
-        {% if greeting.author %}
-          <b>{{ greeting.author.email }}
-            {% if user and user.user_id() == greeting.author.identity %}
-              (You)
-            {% endif %}
-          </b> wrote:
-        {% else %}
-          An anonymous person wrote:
-        {% endif %}
-        <blockquote>{{ greeting.content }}</blockquote>
-      </div>
-      {% endfor %}
+        <div id='greetings-container'></div>
       <!-- [END greetings] -->
 
       <form action="/sign?guestbook_name={{ guestbook_name }}" method="post">
@@ -79,7 +71,23 @@
       </form>
 
       <a href="{{ url|safe }}">{{ url_linktext }}</a>
+
+      {% raw %}
+      <script id="greeting-template" type="text/x-handlebars-template">
+          <div class="row">
+            <h1>{{title}}</h1>
+        </script>
+      {% endraw %}
     </div>
+    <script>
+    var source   = $("#greeting-template").html();
+    var template = Handlebars.compile(source);
+
+    // 請將後端傳來的greeting_dicts json 格式，parse成JS讀得懂的格式。
+    // 並且將greeting_dicts資料放進handlebars顯示出來。
+    // var greetingData = 
+    $('#greetings-container').append(template({title:'I am title'}));
+    </script>
   </body>
 </html>
 {% endautoescape %}

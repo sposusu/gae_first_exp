@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python
 
 # Copyright 2016 Google Inc.
@@ -79,9 +80,19 @@ class MainPage(webapp2.RequestHandler):
             url = users.create_login_url(self.request.uri)
             url_linktext = 'Login'
 
+        greeting_dicts = []
+
+        for greeting in greetings:
+            g = greeting.to_dict()
+            g['date'] = str(g['date'])
+            greeting_dicts.append(g)
+
+        # 由於前端Javascript的地方只讀得懂json，
+        # 所以請將greeting_dicts轉成json格式
+
         template_values = {
             'user': user,
-            'greetings': greetings,
+            'greetings': greeting_dicts,
             'guestbook_name': urllib.quote_plus(guestbook_name),
             'url': url,
             'url_linktext': url_linktext,
