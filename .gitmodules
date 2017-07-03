@@ -1,6 +1,4 @@
 [submodule "bootstrap"]
 	path = bootstrap
 	url = https://github.com/benny0642/gae_first_exp_submodule.git
-[submodule "gae_first_exp_submodule"]
-	path = gae_first_exp_submodule
-	url = https://github.com/benny0642/gae_first_exp_submodule.git
+
